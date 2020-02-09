@@ -4,6 +4,7 @@ require_relative 'services/file_parser'
 require_relative 'services/file_loader'
 require_relative 'services/server_log_parser'
 require_relative 'services/visits_sorter'
+require_relative 'utils/stdout_reporter'
 
 file_parser = FileParser.new(file_loader: FileLoader.new)
 server_log_parser = ServerLogParser.new(parser: file_parser, sorter: VisitsSorter)
@@ -15,6 +16,6 @@ rescue StandardFileError => e
   return
 end
 
-puts server_log_parser.all_visits
+STDOUTReporter.call(server_log_parser.all_visits, line_format: "%s %s visits\n")
 puts ''
-puts server_log_parser.unique_visits
+STDOUTReporter.call(server_log_parser.unique_visits, line_format: "%s %s unique views\n")
