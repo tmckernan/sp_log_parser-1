@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require_relative '../../models/endpoint_visits'
+
 module Counters
   # Count all visits for every endpoint
   class AllVisits

@@ -1,5 +1,8 @@
 # frozen_string_literal: true
 
+require_relative '../models/request'
+require_relative '../models/requests_map'
+
 # Read the file line by line and send it to the RequestsMap
 # @param file_loader [FileLoader]
 class FileParser
