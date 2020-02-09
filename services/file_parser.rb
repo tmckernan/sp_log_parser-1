@@ -8,5 +8,26 @@ class FileParser
     @requests_map = RequestsMap.new
   end
 
-  def call(file_path); end
+  def call(file_path)
+    file = @file_loader.load(file_path)
+
+    begin
+      file.each_line do |log_line|
+        add_line_to_the_map(log_line)
+      end
+    ensure
+      file.close
+    end
+
+    @requests_map
+  end
+
+  private
+
+  def add_line_to_the_map(log_line)
+    request = Request.new(log_line)
+    request.validate!
+
+    @requests_map.add_request(request)
+  end
 end
