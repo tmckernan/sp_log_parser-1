@@ -2,7 +2,6 @@
 
 require 'rspec'
 
-require_relative '../spec_helper'
 require_relative '../../services/file_loader'
 require_relative '../../errors/standard_file_error'
 require_relative '../../errors/file_not_found_error'
