@@ -30,4 +30,10 @@ Run the script by passing in the name of the server logs you would like to parse
 ## Run tests
 Go to the app directory and type the following:
 
-`$ bundle exec rspec`
+- To run specs
+
+  `$ bundle exec rspec`
+
+- To run rubocop 
+  
+  `$ bundle exec rubocop .`
