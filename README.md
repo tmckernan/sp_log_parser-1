@@ -19,5 +19,15 @@ And returns the following:
 
 # Usage
 ## Install
+  1. Clone the repository
+  2. run `bundle install` to install gems
+
 ## Run
+Run the script by passing in the name of the server logs you would like to parse
+
+  `$ ruby main.rb webserver.log`
+
 ## Run tests
+Go to the app directory and type the following:
+
+`$ bundle exec rspec`

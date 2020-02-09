@@ -4,5 +4,8 @@ Metrics/BlockLength:
   Exclude:
     - 'spec/**/*.rb'
 
+Naming/MemoizedInstanceVariableName:
+  EnforcedStyleForLeadingUnderscores: required
+
 Style/RegexpLiteral:
   AllowInnerSlashes: true
