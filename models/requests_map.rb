@@ -10,5 +10,13 @@ class RequestsMap
     @data = data
   end
 
-  def add_request(request); end
+  def add_request(request)
+    addresses = @data[request.endpoint]
+
+    if addresses.nil?
+      @data[request.endpoint] = Hash[request.ip, 1]
+    else
+      addresses[request.ip].nil? ? addresses[request.ip] = 1 : addresses[request.ip] += 1
+    end
+  end
 end
