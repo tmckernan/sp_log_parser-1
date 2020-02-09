@@ -11,14 +11,16 @@ RSpec.describe VisitsCounter do
   subject { described_class.new(reuqests_map) }
 
   let(:reuqests_map) { instance_double('RequestsMap') }
+  let(:endpoint_visits) { instance_double('EndpointVisits') }
+  let(:counter_result) { [endpoint_visits] }
 
   describe '#call' do
     context 'when counter type is ALL' do
       let(:counter_type) { CounterConstants::CounterTypes::ALL_VISITS }
 
       it 'calls AllVisits counter' do
-        expect(Counters::AllVisits).to receive(:call).with(reuqests_map)
-        subject.call(counter_type)
+        expect(Counters::AllVisits).to receive(:call).with(reuqests_map).and_return(counter_result)
+        expect(subject.call(counter_type)).to eq(counter_result)
       end
     end
 
@@ -26,8 +28,8 @@ RSpec.describe VisitsCounter do
       let(:counter_type) { CounterConstants::CounterTypes::UNIQUE_VISITS }
 
       it 'calls UniqueVisits counter' do
-        expect(Counters::UniqueVisits).to receive(:call).with(reuqests_map)
-        subject.call(counter_type)
+        expect(Counters::UniqueVisits).to receive(:call).with(reuqests_map).and_return(counter_result)
+        expect(subject.call(counter_type)).to eq(counter_result)
       end
     end
   end
