@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require_relative '../errors/corrupted_data_error'
+
 # A model that represents single request from logs
 # @param log_line [String] single string from logfile
 class Request
@@ -13,6 +15,6 @@ class Request
   end
 
   def validate!
-    raise CorruptedDataError if @endpoint !~ ENDPOINT_REGEX || @ip !~ IP_REGEX
+    raise CorruptedDataError, "Data is incorrect: [#{@endpoint} #{@ip}]" if @endpoint !~ ENDPOINT_REGEX || @ip !~ IP_REGEX
   end
 end
