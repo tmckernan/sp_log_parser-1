@@ -15,6 +15,8 @@ class Request
   end
 
   def validate!
-    raise CorruptedDataError, "Data is incorrect: [#{@endpoint} #{@ip}]" if @endpoint !~ ENDPOINT_REGEX || @ip !~ IP_REGEX
+    return if @endpoint =~ ENDPOINT_REGEX && @ip =~ IP_REGEX
+
+    raise CorruptedDataError, "Data is incorrect: [#{@endpoint} #{@ip}]"
   end
 end
